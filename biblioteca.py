@@ -38,7 +38,50 @@ libros = [
     {"id": 9, "titulo": "El túnel", "autor": "Ernesto Sabato", "ISBN": "978-9500420305", "paginas": 160, "cantidad_disponible": 2},
     {"id": 10, "titulo": "Pedro Páramo", "autor": "Juan Rulfo", "ISBN": "978-6073142360", "paginas": 144, "cantidad_disponible": 8}
 ]
-
-
-for persona in usuarios:
-    print(persona["nombre"])
+#Busca los usuarios en el sistema.
+def usuarios_registrados(rut):
+    for usuario in usuarios:
+        if usuario["rut"] == rut:
+            return usuario
+    return None
+    
+        
+while True:
+    print ("Menu de biblioteca")
+    print ("1.Buscar usuario por su rut")
+    print ("2.Registrar un nuevo usuario.")
+    print ("3.Registrar un nuevo libro.")
+    print ("4.Salir del menu")
+    
+    try:
+        opcion = int(input("Ingrese una opcion (1-4): "))
+    except ValueError:
+        print ("Debes ingresar un numero del menu")
+        continue
+    if opcion == 4:
+        print ("Saliste del menu principal.")
+        break
+    if opcion == 1:
+        rut = input("Ingrese su rut: ")
+        usuarios = usuarios_registrados(rut)
+        if usuarios:
+            print("---------------------------------------------------------")
+            print (f"Bienvenid@ {usuarios['nombre']}")
+            print("---------------------------------------------------------")
+            print ("Acceso correcto.")
+            print("---------------------------------------------------------")
+            while True:
+                print ("Menu")
+                print ("1.Realizar un préstamo de un libro")
+                print ("2.Realizar la devolución de un libro")
+                try:
+                    opcion = int(input("Eliga una opcion (1-2)"))
+                except ValueError:
+                    print("Debe ingresar una opcion del menu porfavor.")
+                        
+        else:
+            print ("El rut ingresado no esta en nuestra bases de datos.")
+            print ("Puedes crearte un usuario con la opcion 2 del menu principal.")
+            continue
+        
+        
